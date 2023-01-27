@@ -17,29 +17,28 @@ const Auth = () => {
     password:""
   })
 
+  const handleChange=(e)=>{
+  const {name,value} = e.target;
+    setData((prev)=>({
+      ...prev,
+      [name] :value
+    }))
+  }
 const sendRequest= async(type="login")=>{
- let res = axios.post(`https://blogbackend-production-fbc4.up.railway.app/api/user/${type}`,{name:data.name,email:data.email,
+ let res = axios.post(`https://blog-backend-sigma.vercel.app/api/user/${type}`,{name:data.name,email:data.email,
 password:data.password}).catch((err)=>console.log(err));
-
-   let newData = await res.data;
-return newData;
+let newdata = await res;
+return newdata.data;
 }
 
-const handleChange=(e)=>{
-const {name,value} = e.target;
-  setData((prev)=>({
-    ...prev,
-    [name] :value
-  }))
-}
 
 const handleSubmit=(e)=>{
   e.preventDefault();
   if(isSignup){
-    sendRequest("signup").then(()=>dispatch(authAction.login())).then(()=>navigate("/blogs")).then((d)=>console.log(d))
+    sendRequest("signup").then((data) => localStorage.setItem("userId",data.user._id)).then(()=>dispatch(authAction.login())).then(()=>navigate("/")) 
   }
   else{
-    sendRequest().then(()=>dispatch(authAction.login())).then(()=>navigate("/blogs")).then((d)=>console.log(d))
+    sendRequest().then((data) => localStorage.setItem("userId",data.user._id)).then(()=>dispatch(authAction.login())).then(()=>navigate("/")) 
   }
 
 }

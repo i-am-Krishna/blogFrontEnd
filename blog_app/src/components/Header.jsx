@@ -16,9 +16,11 @@ const Header = () => {
             <Typography variant='h4'>Pod Capsule</Typography>
             {loggedIn &&  <Box display='flex' marginLeft={'auto'} marginRight='auto' >
                 <Tabs textColor='inherit' value={value} onChange={(e,val)=>setvalue(val)}>
-                <Tab style={{color:"white"}} label="All Blogs" LinkComponent={Link} to='/blogs'/>
+                <Tab style={{color:"white"}} label="All Blogs" LinkComponent={Link} to='/'/>
                 
                 <Tab style={{color:"white"}} label="My Blogs" LinkComponent={Link} to='/myblogs'/>
+                
+                <Tab style={{color:"white"}} label="Add Blogs" LinkComponent={Link} to='/blogs/add'/>
                 </Tabs>
             </Box> }
             <Box display="flex" marginLeft="auto">
