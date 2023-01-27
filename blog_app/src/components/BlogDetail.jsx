@@ -12,7 +12,7 @@ const BlogDetail = () => {
   const {id} = useParams();
   const [data,setData] = useState({});
   const blogDetails =async()=>{
-    const res = await axios.get(`http://localhost:8000/api/blog/${id}`).catch((err)=>console.log(err))
+    const res = await axios.get(`https://blog-backend-sigma.vercel.app/api/blog/${id}`).catch((err)=>console.log(err))
     const data = await res.data;
     return data
   }
